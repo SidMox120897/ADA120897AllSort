@@ -110,7 +110,7 @@ int main()
 		std::cout <<  "PortAudio error: "<< Pa_GetErrorText( err ) << std::endl;
 	
 #elif defined(MAXIMILIAN_RT_AUDIO)
-	RtAudio dac(RtAudio::WINDOWS_DS);
+	RtAudio dac(RtAudio::LINUX_ALSA);
 	if ( dac.getDeviceCount() < 1 ) {
 		std::cout << "\nNo audio devices found!\n";
 		char input;
@@ -119,7 +119,7 @@ int main()
 	}
 	
 	RtAudio::StreamParameters parameters;
-	parameters.deviceId = dac.getDefaultOutputDevice();
+	parameters.deviceId = 5;
 	parameters.nChannels = maxiSettings::channels;
 	parameters.firstChannel = 0;
 	unsigned int sampleRate = maxiSettings::sampleRate;
